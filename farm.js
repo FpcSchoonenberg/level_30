@@ -58,7 +58,19 @@ const getTotalYieldWithFactors = (crops, environmentFactors) => {
     return totalYield;
 };
 
-//functie12 omzet crop = opbrengst in kg * revenue (salesprice * 1kg)________________________________________________________________
+//functie12 bereken revenue per crop with factors___________________________________________________________________________________
+const getRevenueForCropWithFactors = (plant, environmentFactors) => {
+    return getYieldForPlantWithFactors(plant, environmentFactors) * plant.plantsPerCrop * plant.revenue;
+}
+
+//functie13 bereken profit voor crop with factors_________________________________________________________________________________________________
+const getProfitForCropWithFactors = (plant,environmentFactors) => {
+    const revenueForCrop = getRevenueForCropWithFactors(plant, environmentFactors);
+    const costsForCrop = getCostsForCrop(plant, environmentFactors);
+    return revenueForCrop - costsForCrop;
+}
+
+//functie14 omzet crop = opbrengst in kg * revenue (salesprice * 1kg)________________________________________________________________
 const getTotalProfitWithFactors = (crops, environmentFactors) => {
     let totalProfitWithFactors = 0;
     crops.forEach(crop => {
